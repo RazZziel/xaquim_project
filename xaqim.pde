@@ -9,9 +9,6 @@
 #define SL1 0
 #define SL2 1
 
-#define BUMPER1 6
-#define BUMPER2 7
-
 #define M1 1
 #define M2 2
 
@@ -59,8 +56,7 @@ void setup(){
   Serial.begin(9600);
 }
 
-int sensor0, sensor1=0;
-int signed smooth;
+int sensor0, sensor1;
 int signed turn = 0; // 1 = right; 0 = no ; -1 = left
 
 //Establecemos un movemento ciclico

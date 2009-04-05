@@ -13,6 +13,7 @@
 #define M2 2
 
 #define UMBRAL_NEGRO 800
+#define is_outside(n) (n > UMBRAL_NEGRO)
 
 void motorSetup(){
   pinMode(M1_FRONT, OUTPUT);
@@ -56,7 +57,7 @@ void setup(){
   Serial.begin(9600);
 }
 
-int sensor0, sensor1;
+int sensor0, sensor1, estado;
 int signed turn = 0; // 1 = right; 0 = no ; -1 = left
 
 //Establecemos un movemento ciclico
@@ -71,16 +72,16 @@ void loop(){
   Serial.print(sensor1);
   Serial.print("\n");
   delay(10);
-  if (sensor0  > UMBRAL_NEGRO && sensor1 > UMBRAL_NEGRO)
+  if (is_outside(sensor0) && is_outside(sensor1))
   {
     if (turn == 0)
       turn = 1;
   }
-  else if (sensor0 > UMBRAL_NEGRO)
+  else if ( !is_outside(sensor0) )
   {
     turn = 1;
   }
-  else if (sensor1 > UMBRAL_NEGRO)
+  else if ( is_outside(sensor1) )
   {
     turn = -1;
   }

@@ -135,6 +135,7 @@ void loop(){
     case NO_TURN:
       motorControl(M1|M2, SPEED_CRUISE);
       break;
+#if 0
     case TURN_RIGHT:
       motorControl(M1, SPEED_CRUISE);
       motorControl(M2, 0);
@@ -146,7 +147,20 @@ void loop(){
     case TURN_RIGHT_BIT:
       motorControl(M1, SPEED_CRUISE);
       motorControl(M2, SPEED_CRUISE*2/3);
+      break;
+#else
+    case TURN_RIGHT:
+      motorControl(M2, SPEED_CRUISE);
+      motorControl(M1, 0);
+      break;
+    case TURN_LEFT:
+      motorControl(M2, 0);
+      motorControl(M1, SPEED_CRUISE);
+      break;
+    case TURN_RIGHT_BIT:
+      motorControl(M2, SPEED_CRUISE);
+      motorControl(M1, SPEED_CRUISE*2/3);
       break;  
+#endif
   }
-    
 }
